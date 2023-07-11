@@ -1,0 +1,53 @@
+.field {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+
+    background-image: url('/assets/img/board.jpg');
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-stack {
+    position: relative;
+    top: -90px; /* zum Zentrieren: halbe Höhe der Karte */
+    left: 60px; /* zum Zentrieren: halbe Breite der Karte */
+    img {
+        position: absolute;
+        width: 120px;
+    }
+}
+
+.top-card { /* deaktiviert für Karte, die gezogen wird */
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.pick-card {
+    // transition: all 125ms ease-in-out;
+    // transform: scale(1.5) !important; /* hier mit !important, weil sonst noch das hover von oben zählt */
+    animation: pick-card-animation 1s ease-in-out;
+    transform: scale(1) translateX(130px) translateY(-190px) rotate(-10deg); /* Entspricht dem letzten Stand der Animation, damit die Karte dort liegen bleibt */
+}
+
+@keyframes pick-card-animation {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.7);
+    }
+    60% {
+        transform: scale(1.7);
+    }
+    100% {
+        transform: scale(1) translateX(130px) translateY(-190px) rotate(-10deg);
+    }
+}

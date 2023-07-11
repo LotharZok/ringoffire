@@ -1,0 +1,19 @@
+<div class="field">
+    <div class="card-stack">
+
+        <img [ngStyle]="{'right.px': i*5}" *ngFor="let card of [1,2,3,4]; let i = index;" src="/assets/img/cards/card_cover_2.png" alt="">
+        <!-- Erläuterung zur obigen Zeile: -->
+        <!-- Das *ngFor erzeugt das Element (hier img) so häufig, wie Elemente im Array sind (die Zahlen darin sind egal) -->
+        <!-- i ist dann der Index, der in ngStyle genutzt wird, um ein Element anzusprechen -->
+        <!-- ngStyle sorgt hier dafür, daß die Karten um jeweils i*5 pixel nach rechts versetzt sind -->
+
+        <img (click)="pickCard()" class="top-card" style="right: 20px" src="/assets/img/cards/card_cover_2.png" alt="">
+        <!-- Erläuterung zur obigen Zeile: -->
+        <!-- (click) legt die Funktion fest, die bei einem onClick ausgeführt werden soll. Diese liegt in der component.ts -->
+        <!-- [class.pick-card]="pickCardAnimation" bedeutet, daß diese Klasse nur zugeordnet wird, wenn die Variable pickCardAnimation (in der component.ts) auf true steht (später wieder entfernt)-->
+
+        <img (click)="pickCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 20px" src="/assets/img/cards/spades_1.png" alt="">
+        <!-- Erläuterung zur obigen Zeile: -->
+        <!-- *ngIf bedeutet, daß die Karte nur angezeigt wird, wenn pickCardAnimation auf true steht -->
+    </div>
+</div>
