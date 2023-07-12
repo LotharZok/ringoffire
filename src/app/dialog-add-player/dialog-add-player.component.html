@@ -9,5 +9,7 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+    <!-- Hinweis zur obigen Zeile -->
+    <!-- [disabled]="name.length == 0" bedeutet, daß der Button nicht verfügbar ist, wenn das Feld name leer ist -->
 </div>
