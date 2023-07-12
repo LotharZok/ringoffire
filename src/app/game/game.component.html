@@ -1,4 +1,16 @@
+<app-player *ngFor="let pl of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 110)}" [name]="pl" class="player-position"></app-player>
+<!-- Erläuterung zur obigen Zeile: -->
+<!-- Das *ngFor erzeugt das Element (hier app-player) so häufig, wie Elemente im Array sind (hier: in players). -->
+<!-- Das Array players ist definiert in der models/game.ts -->
+<!-- Was app-player anzeigt, ist in der Datei player.component.html definiert -->
+<!-- i ist dann der Index, der in ngStyle genutzt wird, um ein Element anzusprechen -->
+<!-- ngStyle sorgt hier dafür, daß die Spieler-Anzeige um jeweils i * 110 pixel nach unten versetzt sind -->
+<!-- [name]="pl" weist der Variablen name (siehe nächste Zeile) den aktuellen Wert des Arrays zu, hier also den darin befindlichen Name -->
+<!-- Die Variable name ist in der Datei player.components.ts definiert: @Input() name: string = ''; -->
+<!-- In der Datei player.component.html wird die Variable dann zur Anzeige genutzt: {{ name }} -->
+
 <div class="field">
+
     <div class="card-stack">
 
         <!-- Kartendeck -->
