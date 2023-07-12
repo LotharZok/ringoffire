@@ -1,4 +1,4 @@
-<app-player *ngFor="let pl of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 110)}" [name]="pl" class="player-position"></app-player>
+<app-player *ngFor="let pl of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 80)}" [name]="pl" [playerActive]="i == game.currentPlayer" class="player-position"></app-player>
 <!-- Erläuterung zur obigen Zeile: -->
 <!-- Das *ngFor erzeugt das Element (hier app-player) so häufig, wie Elemente im Array sind (hier: in players). -->
 <!-- Das Array players ist definiert in der models/game.ts -->

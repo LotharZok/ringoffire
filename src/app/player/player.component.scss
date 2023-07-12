@@ -5,7 +5,7 @@
     border-radius: 50px 0 0 50px;
 
     // background-color: rgb(157, 98, 66);
-    background-color: orange;
+    background-color: rgb(211, 211, 211, 0.7);
 
     span {
         font-size: 32px;
@@ -13,10 +13,14 @@
     }
 
     img {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         object-fit: cover;
         border-radius: 100%;
         margin-left: 10px;
     }
+}
+
+.player-active {
+    background-color: rgb(255, 165, 0, 0.7);
 }
