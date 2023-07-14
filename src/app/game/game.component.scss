@@ -3,7 +3,7 @@
     height: 100vh;
     max-width: 100%;
 
-    background-image: url('/assets/img/board.jpg');
+    background-image: url('../../assets/img/board.jpg');
     background-size: cover;
 
     display: flex;
@@ -34,7 +34,7 @@
     // transition: all 125ms ease-in-out;
     // transform: scale(1.5) !important; /* hier mit !important, weil sonst noch das hover von oben zählt */
     animation: pick-card-animation 1s ease-in-out;
-    transform: scale(1) translateX(130px) translateY(-190px) rotate(-10deg); /* Entspricht dem letzten Stand der Animation, damit die Karte dort liegen bleibt */
+    transform: scale(1) translateX(130px) translateY(-190px) rotate(-10deg); /* Entspricht dem letzten Stand der Animation (pick-card-animation, s.u.), damit die Karte dort liegen bleibt */
 }
 
 .played-card {
