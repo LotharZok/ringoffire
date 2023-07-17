@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-game',
@@ -13,14 +16,43 @@ export class GameComponent implements OnInit {
     currentCard: string = '';
     game: Game = new Game();  // auch möglich: Explizite Zuweisung des Typs mit -> game!: Game;
 
-    constructor(public dialog: MatDialog) {}
+    firestore: Firestore = inject(Firestore);
+    games$: Observable<any>;
+    gamesCollection = collection(this.firestore, 'games');
+    // Hier holen wir aus dem Firestore die Collection mit dem Namen 'games'
+
+    constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+    }
 
     ngOnInit(): void {
         // this.newGame();
+
+        this.route.params.subscribe( (params) => {
+            // So kann ich auf Parameter zugreifen, die in der Adresse der Seite angegeben sind
+            // WICHTIG: Es handelt sich NICHT um Parameter des Typs: &Param=...
+            // Sondern um Parameter, die in app-routing.module.ts als Parameter im path angegeben sind. Hier: /:id
+            console.log(params);
+        })
+
+        this.games$ = collectionData(this.gamesCollection);
+        // Hier holen wir aus dem Firestore die Collection mit dem Namen 'gamesCollection' (s.o.)
+
+        // Jetzt die Daten/Änderungen abonnieren:
+        this.games$.subscribe(
+            (game) => {
+                // Wird immer (!!) automatisch ausgeführt, wenn eine Aktualisierung erfolgt
+                // Auf diese Weise können z.B. Benachrichtigungen erfolgen, ähnlich wie in Chat-Apps, die eine Benachrichtigung bei neuen Nachrichten ausgeben.
+                console.log('Game update', game);
+            }
+        )
     }
 
     newGame() {
         this.game = new Game();
+
+        // let gameID = 
+        addDoc(this.gamesCollection, this.game.toJson());
+        // console.log('ID: ', gameID);
     }
 
     pickCard() {
